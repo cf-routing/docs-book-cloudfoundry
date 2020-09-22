@@ -56,11 +56,24 @@ To submit a pull request to the documentation, follow this process:
   </pre>
 
 1. Make your changes. 
- 
+
+1. Get a ruby environment. 
+   If you don't have a ruby environment on your local machine, we suggest using a docker container. The following command assumes you have the docs repos cloned at `~/workspace/DOCS_REPO` on your local machine.
+   <pre>
+   $ docker run -it --mount type=bind,source="$HOME/workspace",target=/workspace -p 4567:4567 ruby:2.3 /bin/bash
+   </pre>
+   
+1. Go to the docs-book-cloudfoundry repo
+   <pre>
+   # if you are executing bookbinder from your local ruby environment
+   $ cd docs-book-cloudfoundry
+   
+   # if you are executing bookbinder from the docker container from the command above
+   $ cf /workspace/docs-book-cloudfoundry
+   </pre>
 1. Run bookbinder on your local changes:
 
   <pre>
-    $ cd docs-book-cloudfoundry
     $ bundle install
     $ bundle exec bookbinder watch
   </pre>
